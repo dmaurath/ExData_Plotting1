@@ -1,114 +1,67 @@
-## Introduction
+## PLOT 1 OVERVIEW
 
-This assignment uses data from
-the <a href="http://archive.ics.uci.edu/ml/">UC Irvine Machine
-Learning Repository</a>, a popular repository for machine learning
-datasets. In particular, we will be using the "Individual household
-electric power consumption Data Set" which I have made available on
-the course web site:
+#Reads in the “Individual household electric power consumption Data Set” available from the UC Irvine Machine Learning Repository, and produces a histogram of the frequency of Global Active Power consumption in kilowatts for the dates February 1 and 2, 2007. 
 
+##PLOT 1 STEP-BY-STEP
 
-* <b>Dataset</b>: <a href="https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip">Electric power consumption</a> [20Mb]
-
-* <b>Description</b>: Measurements of electric power consumption in
-one household with a one-minute sampling rate over a period of almost
-4 years. Different electrical quantities and some sub-metering values
-are available.
-
-
-The following descriptions of the 9 variables in the dataset are taken
-from
-the <a href="https://archive.ics.uci.edu/ml/datasets/Individual+household+electric+power+consumption">UCI
-web site</a>:
-
-<ol>
-<li><b>Date</b>: Date in format dd/mm/yyyy </li>
-<li><b>Time</b>: time in format hh:mm:ss </li>
-<li><b>Global_active_power</b>: household global minute-averaged active power (in kilowatt) </li>
-<li><b>Global_reactive_power</b>: household global minute-averaged reactive power (in kilowatt) </li>
-<li><b>Voltage</b>: minute-averaged voltage (in volt) </li>
-<li><b>Global_intensity</b>: household global minute-averaged current intensity (in ampere) </li>
-<li><b>Sub_metering_1</b>: energy sub-metering No. 1 (in watt-hour of active energy). It corresponds to the kitchen, containing mainly a dishwasher, an oven and a microwave (hot plates are not electric but gas powered). </li>
-<li><b>Sub_metering_2</b>: energy sub-metering No. 2 (in watt-hour of active energy). It corresponds to the laundry room, containing a washing-machine, a tumble-drier, a refrigerator and a light. </li>
-<li><b>Sub_metering_3</b>: energy sub-metering No. 3 (in watt-hour of active energy). It corresponds to an electric water-heater and an air-conditioner.</li>
-</ol>
-
-## Loading the data
+#1 plot1("name of file here") starts the function. For example: plot1("household_power_consumption.txt")
+#2 the file is read into R and assigned to the power variable 
+#3 the date column is reformatted as recommended in the assignment instructions
+#4 the two days of interest are subsetted out of the power data frame and assigned to new data frame named "df"
+#5 the Global_active_power col is reformatted as a numeric vector
+#6 histogram is generated with the title "Global Active Power", red columns, and an x-axis label of "Global Active Power (kilowatts)"
+#7 file is saved as "plot1.png"
+#8 dev is closed
+#9 statement is printed to let you know where the file has been successfully saved
 
 
+## PLOT 2 OVERVIEW
+
+#Reads in the “Individual household electric power consumption Data Set” available from the UC Irvine Machine Learning Repository, and produces a line graph of the Global Active Power consumption in kilowatts for the dates February 1 and 2, 2007. 
+
+##PLOT 2 STEP-BY-STEP
+
+#1 plot2("name of file here") starts the function. For example: plot2("household_power_consumption.txt")
+#2 the file is read into R and assigned to the power data frame 
+#3 the date column is reformatted as recommended in the assignment instructions
+#4 the two days of interest are subsetted out of the power data frame and assigned to new data frame named "df"
+#5 the Global_active_power col is reformatted as a numeric vector
+#6 a new column titled "timestamp" is added to df. This column consists of the date and time pasted together and reforamtted as a POSIXct class.
+#7 plot is generated with timestamp on x-axis and global active power on y-axis. Default x-axis label is removed. Y-axis label is specified.
+#8 png is generated as a 480 pixel by 480 pixel image. Its saved as "PLot2.png". Bitmap files default to pixels as their unit of measurement hence only using "480."
+#9 statement is printed to let you know where the file has been successfully saved
+
+
+## PLOT 3 OVERVIEW
+
+#Reads in the “Individual household electric power consumption Data Set” available from the UC Irvine Machine Learning Repository, and produces one line graph of three sub metering levels for the dates February 1 and 2, 2007. 
+
+##PLOT 3 STEP-BY-STEP
+
+#1 plot3("name of file here") starts the function. For example: plot2("household_power_consumption.txt")
+#2 the file is read into R and assigned to the power data frame 
+#3 the date column is reformatted as recommended in the assignment instructions
+#4 the two days of interest are subsetted out of the power data frame and assigned to new data frame named "df"
+#5 the Sub_metering cols are reformatted as numeric vectors
+#6 a new column titled "timestamp" is added to df. This column consists of the date and time pasted together and reforamtted as a POSIXct class.
+#7 plot is generated with timestamp on x-axis and sub metering levels on y-axis. Default x-axis label is removed. Y-axis label is specified. Legend is added with to the top right with line colors and variable names. 
+#8 png is generated as a 480 pixel by 480 pixel image. Its saved as "plot3.png". Bitmap files default to pixels as their unit of measurement hence only using "480."
+#9 statement is printed to let you know where the file has been successfully saved
 
 
 
-When loading the dataset into R, please consider the following:
+## PLOT 4  OVERVIEW
 
-* The dataset has 2,075,259 rows and 9 columns. First
-calculate a rough estimate of how much memory the dataset will require
-in memory before reading into R. Make sure your computer has enough
-memory (most modern computers should be fine).
+#Reads in the “Individual household electric power consumption Data Set” available from the UC Irvine Machine Learning Repository, and produces four graphs for the dates February 1 and 2, 2007. 
 
-* We will only be using data from the dates 2007-02-01 and
-2007-02-02. One alternative is to read the data from just those dates
-rather than reading in the entire dataset and subsetting to those
-dates.
+##PLOT 4 STEP-BY-STEP
 
-* You may find it useful to convert the Date and Time variables to
-Date/Time classes in R using the `strptime()` and `as.Date()`
-functions.
-
-* Note that in this dataset missing values are coded as `?`.
-
-
-## Making Plots
-
-Our overall goal here is simply to examine how household energy usage
-varies over a 2-day period in February, 2007. Your task is to
-reconstruct the following plots below, all of which were constructed
-using the base plotting system.
-
-First you will need to fork and clone the following GitHub repository:
-[https://github.com/rdpeng/ExData_Plotting1](https://github.com/rdpeng/ExData_Plotting1)
-
-
-For each plot you should
-
-* Construct the plot and save it to a PNG file with a width of 480
-pixels and a height of 480 pixels.
-
-* Name each of the plot files as `plot1.png`, `plot2.png`, etc.
-
-* Create a separate R code file (`plot1.R`, `plot2.R`, etc.) that
-constructs the corresponding plot, i.e. code in `plot1.R` constructs
-the `plot1.png` plot. Your code file **should include code for reading
-the data** so that the plot can be fully reproduced. You should also
-include the code that creates the PNG file.
-
-* Add the PNG file and R code file to your git repository
-
-When you are finished with the assignment, push your git repository to
-GitHub so that the GitHub version of your repository is up to
-date. There should be four PNG files and four R code files.
-
-
-The four plots that you will need to construct are shown below. 
-
-
-### Plot 1
-
-
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
-
-
-### Plot 2
-
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
-
-
-### Plot 3
-
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
-
-
-### Plot 4
-
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
-
+#1 plot4("name of file here") starts the function. For example: plot2("household_power_consumption.txt")
+#2 the file is read into R and assigned to the power data frame 
+#3 the date column is reformatted as recommended in the assignment instructions
+#4 the two days of interest are subsetted out of the power data frame and assigned to new data frame named "df"
+#5 the Sub_metering,Voltage, Global_active_power, and Global_reactive_power cols are reformatted as numeric vectors
+#6 a new column titled "timestamp" is added to df. This column consists of the date and time pasted together and reformatted as a POSIXct class.
+#7 Plot Layout is changed from (1,1) to (2,2) using the par command. 
+#8 Each plot is generated. A png is generated as a 480 pixel by 480 pixel image. Its saved as "plot4.png". Bitmap files default to pixels as their unit of measurement hence only using "480."
+#9 statement is printed to let you know where the file has been successfully saved
